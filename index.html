@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>FMS | Construcciones y Suministros</title>
+
+
+<style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#f4f5f6;
+  color:#222;
+  overflow-x:hidden;
+}
+
+:root{
+
+  --dorado:#d6a633;
+  --dorado-claro:#f0c85a;
+
+  --azul:#17232e;
+  --azul-claro:#29394a;
+
+  --negro:#05080c;
+
+  --blanco:#ffffff;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:75px;
+
+  background:
+    rgba(5,8,12,.94);
+
+  backdrop-filter:
+    blur(12px);
+
+  border-bottom:
+    1px solid rgba(214,166,51,.20);
+
+  z-index:5000;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.25);
+
+}
+
+
+.header-container{
+
+  width:92%;
+  max-width:1250px;
+
+  height:100%;
+
+  margin:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:flex-end;
+
+}
+
+/* =====================================================
+   MENÚ
+===================================================== */
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:27px;
+}
+
+nav a{
+  position:relative;
+  display:block;
+  color:#ffffff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  padding:9px 0 11px;
+  transition:color .3s ease;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:3px;
+  background:var(--dorado);
+  border-radius:3px;
+  transition:width .3s ease;
+}
+
+/* Al pasar el mouse */
+nav a:hover{
+  color:var(--dorado-claro);
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* BOTÓN HAMBURGUESA */
+
+.menu-button{
+
+  display:none;
+
+  background:none;
+
+  border:none;
+
+  color:white;
+
+  font-size:30px;
+
+  cursor:pointer;
+
+}
+
+
+/* =====================================================
+   PORTADA
+===================================================== */
+
+.hero{
+
+  min-height:100vh;
+
+  width:100%;
+
+  position:relative;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+
+  padding:
+    90px 20px 35px;
+
+  text-align:center;
+
+
+  /* SIN EXCAVADORA */
+
+  background:
+
+    radial-gradient(
+      circle at 50% 40%,
+      #30455a 0%,
+      #1b2b3a 27%,
+      #101a23 52%,
+      #080d12 75%,
+      #030507 100%
+    );
+
+}
+
+
+/* =====================================================
+   BRILLO GENERAL DE LA PORTADA
+===================================================== */
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  width:900px;
+  height:900px;
+
+  transform:
+    translate(-50%,-55%);
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(214,166,51,.10) 0%,
+      rgba(214,166,51,.04) 35%,
+      transparent 70%
+    );
+
+  pointer-events:none;
+
+}
+
+
+/* =====================================================
+   ZONA DEL LOGO
+===================================================== */
+
+.ondas-logo{
+
+  position:relative;
+
+  width:100%;
+  height:610px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  z-index:10;
+
+  margin-bottom:0;
+
+}
+
+
+/* =====================================================
+   RESPLANDOR DETRÁS DEL LOGO
+===================================================== */
+
+.ondas-logo::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:68%;
+  height:68%;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(240,200,90,.23) 0%,
+      rgba(214,166,51,.12) 30%,
+      rgba(214,166,51,.03) 55%,
+      transparent 72%
+    );
+
+  animation:
+    luzLogo 5s ease-in-out infinite;
+
+}
+
+
+@keyframes luzLogo{
+
+  0%,
+  100%{
+
+    transform:
+      scale(.85);
+
+    opacity:.45;
+
+  }
+
+  50%{
+
+    transform:
+      scale(1.15);
+
+    opacity:1;
+
+  }
+
+}
+
+
+/* =====================================================
+   LOGO PRINCIPAL - GRANDE
+===================================================== */
+
+.logo-gota{
+
+  position:relative;
+
+  width:min(72vw,760px);
+
+  z-index:20;
+
+  animation:
+    movimientoLogo 6s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 25px 40px rgba(0,0,0,.50)
+    );
+
+}
+
+.logo-gota img{
+
+  width:100%;
+  height:auto;
+
+  display:block;
+
+  object-fit:contain;
+
+  animation:
+  brilloLogo 5s ease-in-out infinite;
+
+}
+
+
+/* =====================================================
+   MOVIMIENTO DEL LOGO
+===================================================== */
+
+@keyframes movimientoLogo{
+
+  0%{
+
+    transform:
+      translateY(5px)
+      scale(0.96,1.02);
+
+  }
+
+
+  25%{
+
+    transform:
+      translateY(-3px)
+      scale(1.02,0.98);
+
+  }
+
+
+  50%{
+
+    transform:
+      translateY(-9px)
+      scale(1.04,0.97);
+
+  }
+
+
+  75%{
+
+    transform:
+      translateY(-2px)
+      scale(0.99,1.02);
+
+  }
+
+
+  100%{
+
+    transform:
+      translateY(5px)
+      scale(0.96,1.02);
+
+  }
+
+}
+
+
+/* =====================================================
+   BRILLO DEL LOGO
+===================================================== */
+
+@keyframes brilloLogo{
+
+  0%,
+  100%{
+
+    filter:
+      brightness(.93);
+
+  }
+
+  50%{
+
+    filter:
+      brightness(1.12);
+
+  }
+
+}
+
+
+/* =====================================================
+   INFORMACIÓN DE PORTADA
+===================================================== */
+
+.hero-contenido{
+
+  position:relative;
+
+  z-index:30;
+
+  max-width:800px;
+
+  margin:30px auto 0;
+
+}
+
+
+/* TEXTO PEQUEÑO */
+
+.hero-subtitle{
+
+  color:
+    var(--dorado-claro);
+
+  font-size:13px;
+
+  font-weight:800;
+
+  letter-spacing:4px;
+
+  margin-top:0px;
+  margin-bottom:15px;
+
+}
+
+
+/* TEXTO PRINCIPAL */
+
+.hero-contenido p{
+
+  max-width:700px;
+
+  margin:
+    0 auto 27px;
+
+  color:#d8dde2;
+
+  font-size:17px;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   BOTONES PORTADA
+===================================================== */
+
+.hero-buttons{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:15px;
+
+}
+
+
+.btn{
+
+  display:inline-block;
+
+  padding:
+    14px 28px;
+
+  border-radius:6px;
+
+  text-decoration:none;
+
+  font-weight:700;
+
+  transition:.3s ease;
+
+}
+
+
+.btn-yellow{
+
+  background:
+    var(--dorado);
+
+  color:#111;
+
+  box-shadow:
+    0 8px 25px rgba(214,166,51,.22);
+
+}
+
+
+.btn-yellow:hover{
+
+  background:
+    var(--dorado-claro);
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 13px 30px rgba(214,166,51,.32);
+
+}
+
+
+.btn-outline{
+
+  color:white;
+
+  background:
+    transparent;
+
+  border:
+    2px solid rgba(255,255,255,.85);
+
+}
+
+
+.btn-outline:hover{
+
+  background:white;
+
+  color:#111;
+
+  transform:
+    translateY(-4px);
+
+}
+
+
+/* =====================================================
+   SECCIONES GENERALES
+===================================================== */
+
+section{
+
+  padding: 95px 7%;
+
+  min-height: 100vh;
+
+  scroll-margin-top: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.hero{
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  padding-top:90px;
+  padding-bottom:35px;
+}
+
+
+.section-header{
+
+  max-width:760px;
+
+  margin:
+    0 auto 55px;
+
+  text-align:center;
+
+}
+
+
+.section-header span{
+
+  color:#b88b25;
+
+  font-size:13px;
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+}
+
+
+.section-header h2{
+
+  font-size:38px;
+
+  margin:
+    8px 0 15px;
+
+}
+
+
+.section-header h2::after{
+
+  content:"";
+
+  display:block;
+
+  width:70px;
+  height:4px;
+
+  background:
+    var(--dorado);
+
+  margin:
+    15px auto;
+
+}
+
+
+.section-header p{
+
+  color:#666;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   NOSOTROS
+===================================================== */
+
+.nosotros{
+
+  background:white;
+
+}
+
+
+.nosotros-container{
+
+  max-width:1150px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:60px;
+
+  align-items:center;
+
+}
+
+
+.nosotros-image{
+
+  min-height:420px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #263747,
+      #0e151c
+    );
+
+  border-radius:18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.18);
+
+  overflow:hidden;
+
+  position:relative;
+
+}
+
+
+.nosotros-image img{
+
+  width:100%;
+  height:100%;
+
+  position:absolute;
+
+  inset:0;
+
+  object-fit:cover;
+
+}
+
+
+.nosotros-image::after{
+
+  content:"FMS";
+
+  position:relative;
+
+  z-index:2;
+
+  color:
+    rgba(214,166,51,.20);
+
+  font-size:100px;
+
+  font-weight:900;
+
+  letter-spacing:10px;
+
+}
+
+
+.nosotros-info h2{
+
+  font-size:38px;
+
+  margin-bottom:20px;
+
+}
+
+
+.nosotros-info h2 span{
+
+  color:#b88b25;
+
+}
+
+
+.nosotros-info p{
+
+  color:#666;
+  font-size:20px;
+  line-height:1.8;
+  text-align:justify;
+  margin-bottom:20px;
+
+
+}
+
+
+/* =====================================================
+   MISIÓN Y VISIÓN
+===================================================== */
+
+.mision-vision{
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #121b24,
+      #070a0e
+    );
+
+  color:white;
+
+}
+
+
+.mision-vision .section-header h2{
+
+  color:white;
+
+}
+
+
+.mision-vision .section-header p{
+
+  color:#bbb;
+
+}
+
+
+.mv-container{
+
+  max-width:1100px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:30px;
+
+}
+
+
+.mv-card{
+
+  position:relative;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #1c2731,
+      #10161c
+    );
+
+  border:
+    1px solid #303944;
+
+  border-radius:16px;
+
+  padding:
+    45px 38px;
+
+  overflow:hidden;
+
+  transition:.4s;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.25);
+
+}
+
+
+.mv-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:5px;
+
+  background:
+    var(--dorado);
+
+}
+
+
+.mv-card:hover{
+
+  transform:
+    translateY(-8px);
+
+  border-color:
+    var(--dorado);
+
+}
+
+
+.mv-icon{
+
+  width:100px;
+  height:100px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:transparent;
+
+  font-size:30px;
+
+  margin-bottom:22px;
+
+}
+
+.mv-icon img{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  display:block;
+}
+
+
+.mv-card h3{
+
+  font-size:27px;
+
+  margin-bottom:12px;
+
+}
+
+
+.mv-line{
+
+  width:50px;
+  height:3px;
+
+  background:
+    var(--dorado);
+
+  margin-bottom:20px;
+
+}
+
+
+.mv-card p{
+
+  color:#cdd1d5;
+
+  line-height:1.8;
+
+  font-size:15px;
+
+  text-align:justify;
+
+}
+
+
+/* =====================================================
+   SERVICIOS
+===================================================== */
+
+.servicios{
+
+  background:#f3f4f5;
+
+}
+
+
+.cards{
+
+  max-width:1150px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:25px;
+
+}
+
+
+.card{
+
+  background:white;
+
+  border-radius:15px;
+
+  padding:38px 28px;
+
+  text-align:center;
+
+  border-top:
+    5px solid var(--dorado);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.10);
+
+  transition:.4s;
+
+}
+
+
+.card:hover{
+
+  transform:
+    translateY(-10px);
+
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.18);
+
+}
+
+
+.card-icon{
+
+  font-size:50px;
+
+  margin-bottom:18px;
+
+}
+
+
+.card h3{
+
+  font-size:21px;
+
+  margin-bottom:12px;
+
+}
+
+
+.card p{
+
+  color:#666;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   MATERIALES
+===================================================== */
+
+.materiales{
+  background:#090d12;
+  color:white;
+
+  min-height:auto;
+  padding-top:95px;
+  padding-bottom:210px;
+}
+
+.materiales .section-header h2{
+
+  color:white;
+
+}
+
+
+.materiales .section-header p{
+
+  color:#bbb;
+
+}
+
+
+.material-grid{
+
+  max-width:1100px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:18px;
+
+}
+
+
+.material{
+
+  background:#151b22;
+
+  border:
+    1px solid #29313a;
+
+  padding:
+    32px 20px;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  transition:.35s;
+
+}
+
+
+.material:hover{
+
+  border-color:
+    var(--dorado);
+
+  transform:
+    translateY(-7px);
+
+}
+
+
+.material-icon{
+
+  font-size:38px;
+
+  margin-bottom:12px;
+
+}
+
+
+.material h3{
+
+  color:
+    var(--dorado-claro);
+
+  margin-bottom:8px;
+
+}
+
+
+.material p{
+
+  color:#bbb;
+
+  font-size:14px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   FRANJA CORPORATIVA
+===================================================== */
+
+.estadisticas{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #b88922,
+      #e2b84c,
+      #b88922
+    );
+
+  padding:25px 7%;
+  
+}
+
+
+.stats{
+
+  max-width:1100px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  text-align:center;
+
+}
+
+.check-animado{
+  display:inline-block;
+  opacity:1;
+  
+}
+
+.check-animado.animar{
+  animation:marcarCheck .9s ease forwards;
+}
+
+@keyframes marcarCheck{
+  0%{
+    opacity:0;
+    transform:scale(.2) rotate(-25deg);
+  }
+
+  65%{
+    opacity:1;
+    transform:scale(1.35) rotate(5deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1) rotate(0deg);
+  }
+}
+
+.stat:nth-child(2) .check-animado.animar{
+  animation-delay:.3s;
+}
+
+.stat:nth-child(3) .check-animado.animar{
+  animation-delay:1s;
+}
+
+.stat:nth-child(4) .check-animado.animar{
+  animation-delay:1.7s;
+}
+
+
+.stat strong{
+
+  display:block;
+
+  font-size:38px;
+
+}
+
+.stat-logo{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  height:85px;
+}
+
+.stat-logo img{
+  width:145px;
+  height:85px;
+  object-fit:contain;
+  display:block;
+}
+
+
+.stat span{
+
+  font-weight:600;
+
+}
+
+
+/* =====================================================
+   PROYECTOS
+===================================================== */
+
+.proyectos{
+
+  background:white;
+
+}
+
+
+.gallery{
+
+  width:100%;
+  max-width:1350px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:20px;
+
+}
+
+
+.gallery-item{
+
+  min-height:280px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:14px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #263747,
+      #101820
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  transition:.4s;
+
+}
+
+
+.gallery-item:hover{
+
+  transform:
+    translateY(-7px);
+
+}
+
+
+.gallery-item::before{
+  content:"FMS";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:rgba(214,166,51,.25);
+
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+.gallery-tipo{
+  position:absolute;
+  top:28px;
+  left:0;
+  width:100%;
+
+  text-align:center;
+  color:#ffffff;
+  font-size:19px;
+  font-weight:700;
+  letter-spacing:.5px;
+
+  z-index:4;
+}
+
+.proyecto-info{
+  width:100%;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+
+.proyecto-info strong{
+  color:#d6a633;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.3;
+}
+
+.proyecto-info span{
+  color:#e0e0e0;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.3;
+}
+
+
+
+.gallery-overlay{
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+
+  align-items:flex-end;
+
+  padding:25px 25px 40px;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      transparent 40%,
+      rgba(0,0,0,.85)
+    );
+
+}
+
+
+/* =====================================================
+   CONTACTO
+===================================================== */
+
+.contacto{
+
+  background:#eef0f2;
+
+}
+
+
+.contact-container{
+
+  max-width:950px;
+
+  margin:auto;
+
+  background:white;
+
+  border-radius:18px;
+
+  padding:50px;
+
+  text-align:center;
+
+  border-top:
+    5px solid var(--dorado);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.12);
+
+}
+
+
+.contact-container h2{
+
+  font-size:35px;
+
+  margin-bottom:15px;
+
+}
+
+
+.contact-container p{
+
+  color:#666;
+
+  line-height:1.7;
+
+  margin-bottom:25px;
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+.whatsapp{
+
+  position:fixed;
+
+  right:25px;
+  bottom:25px;
+
+  width:64px;
+  height:64px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#25D366;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:30px;
+
+  z-index:6000;
+
+  box-shadow:
+    0 7px 24px rgba(0,0,0,.32);
+
+  transition:.3s;
+
+}
+
+
+.whatsapp:hover{
+
+  transform:
+    scale(1.12);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  background:#05080c;
+
+  color:#aaa;
+
+  padding:
+    38px 7%;
+
+  text-align:center;
+
+}
+
+
+footer strong{
+
+  color:
+    var(--dorado-claro);
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN AL BAJAR
+===================================================== */
+
+.reveal{
+
+  opacity:0;
+
+  transform:
+    translateY(35px);
+
+  transition:
+    .8s ease;
+
+}
+
+
+.reveal.active{
+
+  opacity:1;
+
+  transform:
+    translateY(0);
+
+}
+
+
+/* =====================================================
+   TABLET Y CELULAR
+===================================================== */
+
+@media(max-width:850px){
+
+  header{
+
+    height:70px;
+
+  }
+
+
+  .menu-button{
+
+    display:block;
+
+  }
+
+
+  nav{
+
+    position:absolute;
+
+    top:70px;
+    left:0;
+
+    width:100%;
+
+    display:none;
+
+    flex-direction:column;
+
+    background:
+      rgba(5,8,12,.98);
+
+    padding:25px;
+
+    gap:20px;
+
+  }
+
+
+  nav.active{
+
+    display:flex;
+
+  }
+
+
+  nav a{
+
+    font-size:16px;
+
+  }
+
+
+  /* PORTADA */
+
+  .hero{
+
+    padding:
+      85px 18px 40px;
+
+  }
+
+
+  .ondas-logo{
+
+    width:78vw;
+    height:78vw;
+
+    margin-bottom:-30px;
+
+  }
+
+
+  .logo-gota{
+
+    width:76%;
+
+  }
+
+
+  .hero-subtitle{
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+  }
+
+
+  .hero-contenido p{
+
+    font-size:15px;
+
+  }
+
+
+  /* NOSOTROS */
+
+  .nosotros-container{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  /* MISIÓN VISIÓN */
+
+  .mv-container{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .mv-card p{
+
+    text-align:left;
+
+  }
+
+
+  /* SERVICIOS */
+
+  .cards{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  /* MATERIALES */
+
+  .material-grid{
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+
+  /* ESTADÍSTICAS */
+
+  .stats{
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:30px;
+
+  }
+
+
+  .stat{
+
+    border-right:none;
+
+  }
+
+
+  /* PROYECTOS */
+
+  .gallery{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+
+/* =====================================================
+   CELULAR PEQUEÑO
+===================================================== */
+
+@media(max-width:500px){
+
+    .nosotros-info p{
+    font-size:17px;
+    line-height:1.75;
+    text-align:left;
+    margin-bottom:18px;
+  }
+
+  section{
+
+    padding:
+      75px 6%;
+
+  }
+
+
+  .hero{
+
+  min-height:100vh;
+
+  padding:
+    85px 14px 35px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+}
+
+
+.ondas-logo{
+
+  width:100%;
+  height:390px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:0;
+
+}
+
+
+.logo-gota{
+
+  width:96vw;
+  max-width:430px;
+
+}
+
+.hero-contenido{
+
+  width:100%;
+  max-width:100%;
+
+  margin:20px auto 0;
+
+}
+
+
+.hero-subtitle{
+
+  font-size:10px;
+
+  letter-spacing:2px;
+
+  line-height:1.6;
+
+  margin-top:0;
+  margin-bottom:12px;
+
+}
+
+
+.hero-contenido p{
+
+  font-size:14px;
+
+  line-height:1.6;
+
+  margin:
+    0 auto 20px;
+
+  max-width:350px;
+
+}
+
+  .hero-buttons{
+
+    width:100%;
+
+  }
+
+
+  .hero-buttons .btn{
+
+    width:100%;
+
+    max-width:320px;
+
+  }
+
+
+  .material-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .section-header h2{
+
+    font-size:30px;
+
+  }
+
+
+  .contact-container{
+
+    padding:
+      35px 22px;
+
+  }
+
+
+  .whatsapp{
+
+    width:58px;
+    height:58px;
+
+    right:17px;
+    bottom:17px;
+
+  }
+
+}
+
+
+
+
+
+/* =====================================================
+   GALERÍA FMS - NOSOTROS
+===================================================== */
+
+.nosotros-galeria{
+  width:100%;
+  max-width:560px;
+  margin:auto;
+}
+
+
+/* CUADRO PRINCIPAL */
+
+.foto-slider{
+  position:relative;
+
+  width:100%;
+  height:350px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#f4f4f4;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  border:2px solid rgba(214,166,51,.70);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.18);
+}
+
+
+/* FOTOGRAFÍA */
+
+.foto-slider img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+
+  object-position:center;
+
+  transition:
+    opacity .35s ease,
+    transform .45s ease;
+}
+
+
+/* FLECHAS */
+
+.galeria-flecha{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:rgba(5,8,12,.80);
+
+  color:#f0c85a;
+
+  font-size:30px;
+
+  cursor:pointer;
+
+  z-index:10;
+
+  transition:.3s;
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.25);
+}
+
+
+.galeria-flecha:hover{
+  background:#d6a633;
+
+  color:#111;
+
+  transform:
+    translateY(-50%)
+    scale(1.08);
+}
+
+
+.flecha-izq{
+  left:14px;
+}
+
+
+.flecha-der{
+  right:14px;
+}
+
+
+/* CONTADOR */
+
+.galeria-indicador{
+  margin-top:15px;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:10px;
+
+  color:#777;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+
+.galeria-indicador #numeroFoto{
+  color:#b88b25;
+}
+
+
+.linea-indicador{
+  width:42px;
+  height:2px;
+
+  background:#d6a633;
+}
+
+
+/* CELULAR */
+
+@media(max-width:850px){
+
+  .nosotros-galeria{
+    max-width:600px;
+  }
+
+  .foto-slider{
+    height:380px;
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .foto-slider{
+    height:300px;
+  }
+
+  .galeria-flecha{
+    width:38px;
+    height:38px;
+
+    font-size:25px;
+  }
+
+  .flecha-izq{
+    left:8px;
+  }
+
+  .flecha-der{
+    right:8px;
+  }
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media(max-width:850px){
+
+  .nosotros-galeria{
+    height:390px;
+  }
+
+  .foto-principal{
+    width:72%;
+    height:300px;
+  }
+
+  .foto-atras{
+    width:57%;
+    height:235px;
+  }
+
+  .foto-medio{
+    width:57%;
+    height:250px;
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .nosotros-galeria{
+    height:330px;
+  }
+
+  .foto-principal{
+    width:76%;
+    height:250px;
+  }
+
+  .foto-atras{
+    width:60%;
+    height:195px;
+    transform:
+      translateX(-28%)
+      translateY(-30px)
+      rotate(-4deg);
+  }
+
+  .foto-medio{
+    width:60%;
+    height:205px;
+    transform:
+      translateX(28%)
+      translateY(30px)
+      rotate(4deg);
+  }
+
+  .galeria-flecha{
+    width:38px;
+    height:38px;
+    font-size:27px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+  <div class="header-container">
+
+  <nav id="menu">
+
+  <a href="#inicio">
+    Inicio
+  </a>
+
+  <a href="#nosotros">
+    Nosotros
+  </a>
+
+  <a href="#mision-vision">
+    Misión & Visión
+  </a>
+
+  <a href="#servicios">
+    Servicios
+  </a>
+
+  <a href="#materiales">
+    Materiales
+  </a>
+
+  <a href="#proyectos">
+    Proyectos
+  </a>
+
+  <a href="#contacto">
+    Contáctanos
+  </a>
+
+</nav>  
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      aria-label="Abrir menú">
+
+      ☰
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     PORTADA
+====================================================== -->
+
+<section
+  class="hero"
+  id="inicio">
+
+
+  <!-- LOGO CON ONDAS -->
+
+  <div class="ondas-logo">
+  
+
+    <div class="logo-gota">
+
+      <img
+        src="logo-fms.png"
+        alt="FMS Construcciones y Suministros">
+
+    </div>
+
+
+  </div>
+
+
+  <!-- INFORMACIÓN -->
+
+  <div class="hero-contenido">
+
+
+    <div class="hero-subtitle">
+
+      INGENIERÍA • CONSTRUCCIÓN • SUMINISTROS
+
+    </div>
+
+
+    <p>
+
+      Soluciones en obras civiles y suministro de materiales pétreos
+      para proyectos que requieren compromiso, calidad y capacidad
+      de respuesta.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+
+      <a
+        href="#servicios"
+        class="btn btn-yellow">
+
+        Nuestros servicios
+
+      </a>
+
+
+      <a
+        href="#contacto"
+        class="btn btn-outline">
+
+        Solicitar cotización
+
+      </a>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     NOSOTROS
+====================================================== -->
+
+<section
+  class="nosotros"
+  id="nosotros">
+
+
+  <div class="nosotros-container reveal">
+
+
+   <div class="nosotros-galeria">
+
+  <div class="foto-slider">
+
+    <img
+      id="fotoPrincipal"
+      src="portada1.jpeg"
+      alt="Proyectos y trabajos de FMS Construcciones y Suministros"
+    >
+
+    <button
+      class="galeria-flecha flecha-izq"
+      onclick="moverGaleria(-1)"
+      aria-label="Fotografía anterior">
+      ‹
+    </button>
+
+    <button
+      class="galeria-flecha flecha-der"
+      onclick="moverGaleria(1)"
+      aria-label="Fotografía siguiente">
+      ›
+    </button>
+
+  </div>
+
+  <div class="galeria-indicador">
+    <span id="numeroFoto">01</span>
+    <span class="linea-indicador"></span>
+    <span>05</span>
+  </div>
+
+</div> 
+
+    <div class="nosotros-info">
+
+
+      <h2>
+
+        Construimos con
+
+        <span>
+          compromiso
+        </span>
+
+      </h2>
+
+
+      <p>
+
+        FMS Construcciones y Suministros orienta sus
+        actividades al desarrollo de obras civiles y
+        al suministro de materiales pétreos para
+        diferentes necesidades de construcción e
+        infraestructura.
+
+      </p>
+
+
+      <p>
+
+        Nuestro trabajo busca brindar soluciones
+        responsables y confiables, manteniendo una
+        comunicación cercana con nuestros clientes
+        y atendiendo las necesidades particulares
+        de cada proyecto.
+
+      </p>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     MISIÓN Y VISIÓN
+====================================================== -->
+
+<section
+  class="mision-vision"
+  id="mision-vision">
+
+
+  <div class="section-header reveal">
+
+
+    <span>
+      Nuestra esencia
+    </span>
+
+
+    <h2>
+      Misión & Visión
+    </h2>
+
+
+    <p>
+
+      Los principios que orientan nuestro trabajo
+      y la proyección que queremos construir.
+
+    </p>
+
+
+  </div>
+
+
+  <div class="mv-container">
+
+
+    <div class="mv-card reveal">
+
+
+      <div class="mv-icon">
+         <img src="logo-fms.png" alt="FMS">
+      </div>
+
+
+      <h3>
+        Misión
+      </h3>
+
+
+      <div class="mv-line"></div>
+
+
+      <p>
+
+        Desarrollar soluciones en obras civiles y suministro de
+        materiales pétreos, atendiendo las necesidades de nuestros
+        clientes con responsabilidad, calidad y compromiso.
+        Trabajamos para aportar al desarrollo de cada proyecto
+        mediante una ejecución organizada, el uso adecuado de los
+        recursos y un servicio cercano, buscando generar confianza
+        y relaciones duraderas con nuestros clientes y aliados.
+
+      </p>
+
+
+    </div>
+
+
+    <div class="mv-card reveal">
+
+
+      <div class="mv-icon">
+        <img src="logo-fms.png" alt="FMS">
+      </div>
+
+
+      <h3>
+        Visión
+      </h3>
+
+
+      <div class="mv-line"></div>
+
+
+      <p>
+
+        Consolidarnos como una empresa reconocida por la confianza
+        y calidad de nuestros servicios en obras civiles y suministro
+        de materiales pétreos, fortaleciendo continuamente nuestra
+        capacidad de respuesta y ampliando nuestra participación en
+        nuevos proyectos. Aspiramos a crecer de manera responsable,
+        incorporando mejores prácticas de trabajo y contribuyendo al
+        desarrollo de las comunidades y territorios donde hacemos
+        presencia.
+
+      </p>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     SERVICIOS
+====================================================== -->
+
+<section
+  class="servicios"
+  id="servicios">
+
+
+  <div class="section-header reveal">
+
+
+    <span>
+      Lo que hacemos
+    </span>
+
+
+    <h2>
+      Nuestros Servicios
+    </h2>
+
+
+    <p>
+
+      Soluciones para el desarrollo y ejecución
+      de proyectos de construcción e infraestructura.
+
+    </p>
+
+
+  </div>
+
+
+  <div class="cards">
+
+
+    <div class="card reveal">
+
+      <div class="card-icon">
+        🏗️
+      </div>
+
+      <h3>
+        Obras Civiles
+      </h3>
+
+      <p>
+
+        Desarrollo y ejecución de obras civiles
+        de acuerdo con las características y
+        necesidades de cada proyecto.
+
+      </p>
+
+    </div>
+
+
+    <div class="card reveal">
+
+      <div class="card-icon">
+        🪨
+      </div>
+
+      <h3>
+        Materiales Pétreos
+      </h3>
+
+      <p>
+
+        Suministro de materiales para construcción,
+        adecuaciones y proyectos de infraestructura.
+
+      </p>
+
+    </div>
+
+
+    <div class="card reveal">
+
+      <div class="card-icon">
+        🚜
+      </div>
+
+      <h3>
+        Apoyo a Proyectos
+      </h3>
+
+      <p>
+
+        Soluciones complementarias para apoyar
+        diferentes actividades relacionadas con
+        la ejecución de proyectos de obra civil.
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     MATERIALES
+====================================================== -->
+
+<section
+  class="materiales"
+  id="materiales">
+
+
+  <div class="section-header reveal">
+
+
+    <span>
+      Materiales para su proyecto
+    </span>
+
+
+    <h2>
+      Materiales Pétreos
+    </h2>
+
+
+    <p>
+
+      Consulte la disponibilidad de materiales
+      de acuerdo con las necesidades particulares
+      de su proyecto.
+
+    </p>
+
+
+  </div>
+
+
+  <div class="material-grid">
+
+
+    <div class="material reveal">
+
+      <div class="material-icon">
+        🪨
+      </div>
+
+      <h3>
+        Material Triturado
+      </h3>
+
+      <p>
+        Material para diferentes aplicaciones constructivas.
+      </p>
+
+    </div>
+
+
+    <div class="material reveal">
+
+      <div class="material-icon">
+        ⛰️
+      </div>
+
+      <h3>
+        Recebo
+      </h3>
+
+      <p>
+        Material para adecuación y conformación de terrenos.
+      </p>
+
+    </div>
+
+
+    <div class="material reveal">
+
+      <div class="material-icon">
+        🏖️
+      </div>
+
+      <h3>
+        Arena
+      </h3>
+
+      <p>
+        Material para diferentes procesos constructivos.
+      </p>
+
+    </div>
+
+
+    <div class="material reveal">
+
+      <div class="material-icon">
+        🚧
+      </div>
+
+      <h3>
+        Otros materiales
+      </h3>
+
+      <p>
+        Consulte disponibilidad según los requerimientos
+        de su proyecto.
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FRANJA
+====================================================== -->
+
+<div class="estadisticas">
+
+
+  <div class="stats">
+
+
+    <div class="stat">
+
+      <strong class="stat-logo">
+        <img src="logo-fms.png" alt="FMS Construcciones y Suministros">
+      </strong>
+
+      
+    </div>
+
+
+    <div class="stat">
+
+      <strong class="check-animado">
+        ✓
+      </strong>
+
+      <span>
+        Compromiso
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong class="check-animado">
+        ✓
+      </strong>
+
+      <span>
+        Calidad
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong class="check-animado">
+        ✓
+      </strong>
+
+      <span>
+        Servicio
+      </span>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     PROYECTOS
+====================================================== -->
+
+<section
+  class="proyectos"
+  id="proyectos">
+
+
+  <div class="section-header reveal">
+
+
+    <span>
+      Nuestro trabajo
+    </span>
+
+
+    <h2>
+      Proyectos
+    </h2>
+
+
+    <p>
+
+      Un espacio para conocer algunos de los trabajos
+      desarrollados por FMS Construcciones y Suministros.
+
+    </p>
+
+
+  </div>
+
+
+  <div class="gallery">
+
+   
+  <!-- OBRAS CIVILES -->
+  <div class="gallery-item reveal">
+
+    <div class="gallery-tipo">
+      Obras Civiles
+    </div>
+
+    
+  </div>
+
+
+  <!-- INFRAESTRUCTURA -->
+  <div class="gallery-item reveal">
+
+    <div class="gallery-tipo">
+      Infraestructura
+    </div>
+
+    
+  </div>
+
+
+  <!-- SUMINISTRO DE MATERIALES -->
+  <div class="gallery-item reveal">
+
+    <div class="gallery-tipo">
+      Suministro de Materiales
+    </div>
+
+    <div class="gallery-overlay">
+      <div class="proyecto-info">
+        <strong>Vía Payandesal – Las Brumas</strong>
+        <span>Mesetas, Meta</span>
+      </div>
+    </div>
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     CONTACTO
+====================================================== -->
+
+<section
+  class="contacto"
+  id="contacto">
+
+
+  <div class="contact-container reveal">
+
+
+    <h2>
+      ¿Tienes un proyecto en mente?
+    </h2>
+
+
+    <p>
+
+      Cuéntanos qué necesitas. Estamos disponibles
+      para brindarte información sobre nuestros servicios,
+      materiales y cotizaciones.
+
+    </p>
+
+
+    <a
+      href="https://wa.me/573000000000?text=Hola,%20estoy%20interesado%20en%20los%20servicios%20de%20FMS%20Construcciones%20y%20Suministros.%20Quisiera%20solicitar%20una%20cotización."
+      target="_blank"
+      class="btn btn-yellow">
+
+      💬 Cotizar por WhatsApp
+
+    </a>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     WHATSAPP FLOTANTE
+====================================================== -->
+
+<a
+  class="whatsapp"
+  href="https://wa.me/573000000000?text=Hola,%20estoy%20interesado%20en%20los%20servicios%20de%20FMS%20Construcciones%20y%20Suministros."
+  target="_blank"
+  aria-label="Contactar por WhatsApp">
+
+  ☎
+
+</a>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+  <p>
+
+    © 2026
+
+    <strong>
+      FMS Construcciones y Suministros
+    </strong>
+
+    · Obras Civiles & Materiales Pétreos
+
+  </p>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* MENÚ CELULAR */
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const menu =
+  document.getElementById("menu");
+
+
+menuButton.addEventListener(
+  "click",
+  () => {
+
+    menu.classList.toggle("active");
+
+    if(menu.classList.contains("active")){
+
+      menuButton.innerHTML="✕";
+
+    }else{
+
+      menuButton.innerHTML="☰";
+
+    }
+
+  }
+);
+
+
+/* CERRAR MENÚ */
+
+document
+.querySelectorAll("nav a")
+.forEach(link=>{
+
+  link.addEventListener(
+    "click",
+    ()=>{
+
+      menu.classList.remove("active");
+
+      menuButton.innerHTML="☰";
+
+    }
+  );
+
+});
+
+
+/* ANIMACIONES */
+
+const reveals =
+  document.querySelectorAll(".reveal");
+
+
+function mostrarElementos(){
+
+  const altura =
+    window.innerHeight;
+
+
+  reveals.forEach(elemento=>{
+
+    const posicion =
+      elemento
+      .getBoundingClientRect()
+      .top;
+
+
+    if(posicion < altura - 80){
+
+      elemento
+      .classList
+      .add("active");
+
+    }
+
+  });
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  mostrarElementos
+);
+
+
+window.addEventListener(
+  "load",
+  mostrarElementos
+);
+
+/* =====================================================
+   GALERÍA AUTOMÁTICA - NOSOTROS
+===================================================== */
+
+const fotosNosotros = [
+  "portada1.jpeg",
+  "portada2.jpeg",
+  "portada3.jpg",
+  "portada4.jpeg",
+  "portada5.jpeg"
+];
+
+
+function actualizarGaleria(){
+
+  const imagen =
+    document.getElementById("fotoPrincipal");
+
+  imagen.style.opacity = "0";
+
+  imagen.style.transform = "scale(.97)";
+
+  setTimeout(() => {
+
+    imagen.src =
+      fotosNosotros[fotoActual];
+
+    document
+      .getElementById("numeroFoto")
+      .textContent =
+      String(fotoActual + 1).padStart(2,"0");
+
+    imagen.style.opacity = "1";
+
+    imagen.style.transform = "scale(1)";
+
+  }, 250);
+
+}
+let fotoActual = 0;
+
+
+
+
+function moverGaleria(direccion){
+
+  fotoActual =
+    (fotoActual + direccion + fotosNosotros.length)
+    % fotosNosotros.length;
+
+  actualizarGaleria();
+
+}
+
+
+/* CAMBIO AUTOMÁTICO CADA 4 SEGUNDOS */
+
+setInterval(() => {
+
+  moverGaleria(1);
+
+}, 4000);
+
+
+
+</script>
+
+<script>
+  
+/* =========================================
+   MENÚ ACTIVO SEGÚN LA SECCIÓN VISIBLE
+========================================= */
+
+const enlacesMenu =
+  document.querySelectorAll('#menu a[href^="#"]');
+
+function marcarSeccionActiva(){
+
+  const posicionScroll =
+    window.scrollY + 180;
+
+  let seccionActual = "inicio";
+
+  enlacesMenu.forEach(enlace => {
+
+    const id =
+      enlace.getAttribute("href");
+
+    const seccion =
+      document.querySelector(id);
+
+    if(
+      seccion &&
+      posicionScroll >= seccion.offsetTop
+    ){
+      seccionActual =
+        id.substring(1);
+    }
+
+  });
+
+  enlacesMenu.forEach(enlace => {
+
+    enlace.classList.remove("menu-activo");
+
+    if(
+      enlace.getAttribute("href") ===
+      "#" + seccionActual
+    ){
+      enlace.classList.add("menu-activo");
+    }
+
+  });
+
+}
+
+marcarSeccionActiva();
+
+window.addEventListener(
+  "scroll",
+  marcarSeccionActiva
+);
+
+window.addEventListener(
+  "resize",
+  marcarSeccionActiva
+);
+
+</script>
+
+<script>
+const franjaFMS = document.querySelector(".estadisticas");
+const checksFMS = document.querySelectorAll(".check-animado");
+
+if (franjaFMS && checksFMS.length) {
+
+  const observadorChecks = new IntersectionObserver(
+    (entradas) => {
+
+      entradas.forEach(entrada => {
+
+        if (entrada.isIntersecting) {
+
+          checksFMS.forEach(check => {
+            check.classList.remove("animar");
+          });
+
+          void franjaFMS.offsetWidth;
+
+          checksFMS.forEach(check => {
+            check.classList.add("animar");
+          });
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.45
+    }
+  );
+
+  observadorChecks.observe(franjaFMS);
+}
+</script>
+
+</body>
+
+</html>
